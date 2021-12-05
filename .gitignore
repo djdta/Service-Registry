@@ -1,3 +1,9 @@
 cis hardening/.assets/Folder Structure.drawio
-cis hardening/linux/vagrant/.vagrant/.*
-
+../../vagrant/.vagrant/.*
+cis hardening/linux/vagrant/.vagrant/bundler/
+cis hardening/linux/vagrant/.vagrant/rgloader/loader.rb
+cis hardening/linux/vagrant/.vagrant/machines/cis-testing/virtualbox/box_meta
+cis hardening/linux/vagrant/.vagrant/machines/cis-testing/virtualbox/creator_uid
+cis hardening/linux/vagrant/.vagrant/machines/cis-testing/virtualbox/id
+cis hardening/linux/vagrant/.vagrant/machines/cis-testing/virtualbox/index_uuid
+cis hardening/linux/vagrant/.vagrant/machines/cis-testing/virtualbox/vagrant_cwd

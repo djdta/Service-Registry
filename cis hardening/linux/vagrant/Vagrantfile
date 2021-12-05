@@ -1,0 +1,60 @@
+$controller = <<MSG
+
+README
+******************************************************
+Template Information about this vagrant box
+
+******************************************************
+MSG
+
+class String
+
+  def nocolur; colorize(self, "\e\033[0m"); end
+  def red; colorize(self, "\e[1m\e[31m"); end
+  def green; colorize(self, "\e[1m\e[32m"); end
+  def dark_green; colorize(self, "\e[32m"); end
+  def yellow; colorize(self, "\e[1m\e[33m"); end
+  def blue; colorize(self, "\e[1m\e[34m"); end
+  def dark_blue; colorize(self, "\e[34m"); end
+  def colorize(text, color_code)  "#{color_code}#{text}\e[0m" end
+end
+
+puts <<'EOF' .blue
+
+██████╗██╗███████╗    ██████╗ ███████╗███╗   ██╗ ██████╗██╗  ██╗███╗   ███╗ █████╗ ██████╗ ██╗  ██╗
+██╔════╝██║██╔════╝    ██╔══██╗██╔════╝████╗  ██║██╔════╝██║  ██║████╗ ████║██╔══██╗██╔══██╗██║ ██╔╝
+██║     ██║███████╗    ██████╔╝█████╗  ██╔██╗ ██║██║     ███████║██╔████╔██║███████║██████╔╝█████╔╝ 
+██║     ██║╚════██║    ██╔══██╗██╔══╝  ██║╚██╗██║██║     ██╔══██║██║╚██╔╝██║██╔══██║██╔══██╗██╔═██╗ 
+╚██████╗██║███████║    ██████╔╝███████╗██║ ╚████║╚██████╗██║  ██║██║ ╚═╝ ██║██║  ██║██║  ██║██║  ██╗
+ ╚═════╝╚═╝╚══════╝    ╚═════╝ ╚══════╝╚═╝  ╚═══╝ ╚═════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝
+                                                                                                    
+████████╗███████╗███████╗████████╗██╗███╗   ██╗ ██████╗                                             
+╚══██╔══╝██╔════╝██╔════╝╚══██╔══╝██║████╗  ██║██╔════╝                                             
+   ██║   █████╗  ███████╗   ██║   ██║██╔██╗ ██║██║  ███╗                                            
+   ██║   ██╔══╝  ╚════██║   ██║   ██║██║╚██╗██║██║   ██║                                            
+   ██║   ███████╗███████║   ██║   ██║██║ ╚████║╚██████╔╝                                            
+   ╚═╝   ╚══════╝╚══════╝   ╚═╝   ╚═╝╚═╝  ╚═══╝ ╚═════╝                                             
+
+EOF
+
+Vagrant.configure(2) do |config|
+  config.vm.define "cis-testing" do |cis|
+    cis.vm.post_up_message = $controller .green
+    cis.vm.box = "ubuntu/bionic64"
+    cis.vm.box_check_update = true
+    cis.vm.network "private_network", ip: "192.168.56.5"
+    cis.vm.hostname = "cis-testing"
+  cis.vm.synced_folder "../../linux", "/home/vagrant/cis", disabled = false
+  
+    cis.vm.provider "virtualbox" do |vb|
+        vb.cpus = 1
+        vb.memory = 512
+        vb.name = "cis-testing"
+        vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
+        vb.customize ["modifyvm", :id, "--audio", "none"]
+        vb.customize ["modifyvm", :id, "--iconfile", "../../.assets/cis.png"]
+        vb.customize ["modifyvm", :id, "--accelerate3d", "off"]
+        vb.customize ["modifyvm", :id, "--vram", "2"]
+    end
+  end
+end

@@ -1,2 +1,3 @@
 cis hardening/.assets/Folder Structure.drawio
-cis hardening/linux/vagrant/.vagrant/*.
+cis hardening/linux/vagrant/.vagrant/*.*
+cis hardening/linux/vagrant/.vagrant/rgloader/loader.rb

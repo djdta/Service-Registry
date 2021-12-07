@@ -1,1 +1,8 @@
 cis hardening/.assets/Folder Structure.drawio
+../../vagrant/.vagrant/.*
+cis hardening/linux/vagrant/.vagrant/
+cis hardening/linux/vagrant/.vagrant/bundler/
+cis hardening/linux/vagrant/.vagrant/rgloader/
+cis hardening/linux/vagrant/.vagrant/machines/
+
+cis hardening/linux/vagrant/ubuntu-bionic-18.04-cloudimg-console.log
